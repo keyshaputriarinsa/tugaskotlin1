@@ -1,0 +1,53 @@
+class Produk(
+    val nama: String,
+    var harga: Double,
+    var stok: Int,
+    val kategori: String,
+    val deskripsi: String
+) {
+    // Menampilkan informasi detail produk
+    fun tampilkanInformasi() {
+        println("Nama Produk: $nama")
+        println("Harga: Rp ${harga.format()}")
+        println("Stok Tersedia: $stok")
+        println("Kategori: $kategori")
+        println("Deskripsi: $deskripsi")
+    }
+
+    // Mengurangi stok produk saat produk dibeli
+    fun beliProduk(jumlah: Int) {
+        if (jumlah > stok) {
+            println("Stok tidak cukup untuk melakukan pembelian.")
+        } else {
+            stok -= jumlah
+            println("Pembelian berhasil! Anda membeli $jumlah $nama.")
+            println("Sisa stok: $stok")
+        }
+    }
+
+    // Fungsi untuk memformat harga dengan dua desimal
+    private fun Double.format(): String {
+        return String.format("%.2f", this)
+    }
+}
+
+fun main() {
+    // Membuat objek dari class Produk
+    val produk1 = Produk(
+        nama = "Laptop ASUS",
+        harga = 15000000.0,
+        stok = 10,
+        kategori = "Elektronik",
+        deskripsi = "Laptop gaming dengan performa tinggi dan desain elegan."
+    )
+
+    // Menampilkan informasi produk
+    produk1.tampilkanInformasi()
+
+    // Simulasi pembelian produk
+    val jumlahBeli = 2
+    produk1.beliProduk(jumlahBeli)
+
+    // Menampilkan informasi produk setelah pembelian
+    produk1.tampilkanInformasi()
+}
